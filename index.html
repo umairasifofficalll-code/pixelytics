@@ -127,6 +127,20 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .grid3,.grid2,.about,.contact .rows{grid-template-columns:1fr}
   section{padding:64px 0}
 }
+
+.pk{display:flex;flex-direction:column;gap:12px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px}
+.pk small{font-family:var(--brand);font-weight:700;font-size:15px;color:var(--signal-deep)}
+.pk ul{margin:0;padding-left:20px;color:var(--muted);font-size:16px}
+.pk li{margin:4px 0}
+.pk .quote{margin-top:auto;font-weight:600;color:var(--ink)}
+.pk.main{border:2px solid var(--signal-deep)}
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:40px}
+.enq{margin-top:28px;display:grid;gap:12px;max-width:560px}
+.enq label{font-size:14px;font-weight:600;color:#C9D3E3;display:grid;gap:6px}
+.enq input,.enq select,.enq textarea{font:inherit;font-size:16px;padding:12px 14px;border-radius:10px;border:1px solid #3A4C70;background:#10244A;color:#fff}
+.enq input:focus-visible,.enq select:focus-visible,.enq textarea:focus-visible{outline:3px solid var(--pulse);outline-offset:2px}
+.enq button{justify-self:start;border:0}
+@media (max-width:860px){.how{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -141,6 +155,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div class="links">
         <a href="#websites">Websites</a>
         <a href="#data">Data projects</a>
+        <a href="#packages">Packages</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </div>
@@ -202,7 +217,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <h3>Past Enlighten</h3>
           <p>A brand for private tours of Lahore and northern Pakistan for foreign travellers, led by a certified guide. The brand identity, logo and web presence were built for it.</p>
           <div class="tags"><span class="tag">Tours</span><span class="tag">Foreign travellers</span><span class="tag">Branding</span></div>
-          <a class="link" href="https://www.instagram.com/pastenlighten/">See Past Enlighten on Instagram →</a>
+          <a class="link" href="https://umairasifofficalll-code.github.io/pastenlighten-website/index.html">Open the live site →</a>
         </div>
       </article>
 
@@ -282,6 +297,32 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   </div>
 </section>
 
+<section id="packages" class="alt">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Packages</p>
+      <h2>Pick a starting point</h2>
+      <p>Every project is quoted after a short chat about your business, so you only pay for what you need.</p>
+    </div>
+    <div class="grid3">
+      <div class="pk"><small>Website</small><h3>Business website</h3>
+        <ul><li>Up to 5 pages, designed for phones first</li><li>Call and WhatsApp buttons</li><li>Services, about and contact pages</li><li>Published online and ready to share</li></ul>
+        <p class="quote">Message us for a quote</p></div>
+      <div class="pk main"><small>Website + enquiries</small><h3>Website that brings enquiries</h3>
+        <ul><li>Everything in Business website</li><li>An enquiry button on every service or tour</li><li>Map, opening hours and social links</li><li>Basic search-engine setup</li></ul>
+        <p class="quote">Message us for a quote</p></div>
+      <div class="pk"><small>Data analysis</small><h3>Reports and dashboards</h3>
+        <ul><li>Cleaning of your messy sheets</li><li>Charts of sales, customers or traffic</li><li>A short written summary of what to do next</li><li>One dashboard you can reopen</li></ul>
+        <p class="quote">Message us for a quote</p></div>
+    </div>
+    <div class="how">
+      <div class="step"><small>Step 1</small><h3>Tell us about your business</h3><p>A short WhatsApp chat about what you sell and what you want customers to do.</p></div>
+      <div class="step"><small>Step 2</small><h3>See a plan and a quote</h3><p>We explain what we would build or analyse, how long it takes and the price.</p></div>
+      <div class="step"><small>Step 3</small><h3>Review, then launch</h3><p>You see the work before it goes live, and we make changes until it is right.</p></div>
+    </div>
+  </div>
+</section>
+
 <section id="about" class="alt">
   <div class="wrap about">
     <div>
@@ -306,6 +347,20 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <p class="eyebrow" style="color:var(--pulse)">Contact</p>
     <h2 style="margin-top:12px">Tell us what you need</h2>
     <p style="margin-top:14px;max-width:36em">Send a message with your business and what you want built or analysed. We reply with how we would approach it.</p>
+    <form class="enq" id="enq">
+      <label>Your name<input name="n" autocomplete="name" required></label>
+      <label>Your business<input name="b" autocomplete="organization"></label>
+      <label>What do you need?<select name="w"><option>A business website</option><option>A website with enquiry buttons</option><option>Data analysis or a dashboard</option><option>Not sure yet</option></select></label>
+      <label>Anything else we should know<textarea name="m" rows="3"></textarea></label>
+      <button class="btn btn-primary" type="submit">Send on WhatsApp</button>
+    </form>
+    <script>
+    document.getElementById('enq').addEventListener('submit',function(e){
+      e.preventDefault();var f=e.target;
+      var t='Hi Pixelytics, I am '+f.n.value+(f.b.value?(' from '+f.b.value):'')+'. I need: '+f.w.value+'.'+(f.m.value?(' '+f.m.value):'');
+      window.open('https://wa.me/923472811951?text='+encodeURIComponent(t),'_blank','noopener');
+    });
+    </script>
     <div class="rows">
       <div class="cbox"><span>WhatsApp</span><a href="https://wa.me/923472811951?text=Hi%20Pixelytics%2C%20I%20would%20like%20to%20talk%20about%20a%20project.">+92 347 2811951</a></div>
       <div class="cbox"><span>Email</span><a href="mailto:hello.pixelytics@gmail.com">hello.pixelytics@gmail.com</a></div>
