@@ -15,398 +15,187 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;700;800&family=Public+Sans:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
-<style>
-/* Layout idea: navy hero with the logo's pixel-chart blown up; light, spacious proof sections below. */
-:root{
-  --ink:#0B1B3A;
-  --signal:#0D9488;
-  --signal-deep:#0F766E;
-  --pulse:#2DD4BF;
-  --cloud:#F6F8FB;
-  --line:#D5DCE6;
-  --muted:#475569;
-  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
-  --body:'Public Sans','Segoe UI',system-ui,sans-serif;
-  --brand:'Space Grotesk','Segoe UI',system-ui,sans-serif;
-  color-scheme:light;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--cloud);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
-a{color:var(--signal-deep)}
-a:focus-visible,button:focus-visible{outline:3px solid var(--pulse);outline-offset:3px}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;line-height:1.08}
-h2{font-size:clamp(30px,4.2vw,46px);font-weight:800;letter-spacing:-0.02em}
-h3{font-size:22px;font-weight:700;letter-spacing:-0.01em}
-p{margin:0}
-.eyebrow{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--signal-deep)}
-
-/* nav + hero */
-.top{background:var(--ink);color:#fff}
-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;flex-wrap:wrap}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;font-family:var(--brand);font-weight:700;font-size:24px;letter-spacing:-0.5px}
-.logo b{color:var(--pulse);font-weight:700}
-.links{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
-.links a{color:#D7E0EE;text-decoration:none;font-size:15px;font-weight:500}
-.links a:hover{color:#fff}
-.btn{display:inline-block;padding:13px 22px;border-radius:12px;font-weight:600;font-size:16px;text-decoration:none;border:2px solid transparent;cursor:pointer}
-.btn-primary{background:var(--signal-deep);color:#fff}
-.btn-primary:hover{background:#115E59}
-.btn-ghost{border-color:#3A4C70;color:#fff}
-.btn-ghost:hover{border-color:var(--pulse)}
-.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px;align-items:center;padding:56px 0 88px}
-.hero h1{font-size:clamp(40px,6.2vw,72px);font-weight:800;letter-spacing:-0.03em;color:#fff}
-.hero h1 span{color:var(--pulse)}
-.hero p.lead{margin-top:22px;font-size:20px;color:#C3CFE3;max-width:34em}
-.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
-.chart{display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(5,1fr);gap:8px;aspect-ratio:7/5;width:100%;max-width:440px;justify-self:end}
-.chart i{display:block;border-radius:9px;background:#16294F}
-.chart i.on{background:#fff}
-.chart i.hi{background:var(--pulse)}
-.chart i.on,.chart i.hi{animation:rise .7s ease-out both}
-@keyframes rise{from{transform:scale(.7);opacity:.35}to{transform:none;opacity:1}}
-.cap{grid-column:1/-1;font-size:14px;color:#9FB0CC;margin-top:10px}
-@media (prefers-reduced-motion:reduce){.chart i.on,.chart i.hi{animation:none}html{scroll-behavior:auto}}
-
-/* sections */
-section{padding:84px 0}
-section.alt{background:#fff;border-block:1px solid var(--line)}
-.head{display:flex;flex-direction:column;gap:12px;max-width:40em;margin-bottom:40px}
-.head p{color:var(--muted)}
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-
-/* site cards */
-.site{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
-.shot{height:170px;padding:16px 16px 0;display:flex;flex-direction:column}
-.frame{flex:1;background:#fff;border-radius:12px 12px 0 0;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
-.dots{display:flex;gap:5px}
-.dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
-.fbar{height:34px;border-radius:7px;display:flex;align-items:center;padding:0 10px;font-family:var(--display);font-weight:700;font-size:13px;color:#fff;white-space:nowrap;overflow:hidden}
-.fline{height:8px;border-radius:4px;background:var(--cloud)}
-.fline.s{width:60%}
-.body{padding:22px;display:flex;flex-direction:column;gap:12px;flex:1}
-.body p{color:var(--muted);font-size:16px}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
-.tag{font-size:13px;font-weight:600;padding:4px 10px;border-radius:99px;background:var(--cloud);color:var(--ink);border:1px solid var(--line)}
-.pill{align-self:flex-start;font-size:13px;font-weight:600;padding:3px 10px;border-radius:99px}
-.pill.live{background:#D9F5F0;color:#0B5F58}
-.pill.todo{background:#FFF1D6;color:#7A4B00}
-.link{font-weight:600;text-decoration:none;display:inline-flex;gap:6px;align-items:center}
-.link:hover{text-decoration:underline}
-.todo-link{font-size:15px;color:#7A4B00;border:1.5px dashed #E0B96A;border-radius:10px;padding:8px 12px;align-self:flex-start}
-
-/* data cards */
-.data{background:var(--cloud);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px}
-.data p{color:var(--muted);font-size:16px}
-.kind{font-size:13px;font-weight:600;color:var(--signal-deep)}
-
-/* process + about */
-.step{display:flex;flex-direction:column;gap:10px;padding-top:18px;border-top:3px solid var(--ink)}
-.step small{font-family:var(--brand);font-weight:700;font-size:15px;color:var(--signal-deep)}
-.step p{color:var(--muted);font-size:16px}
-.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
-.about p+p{margin-top:14px}
-.about p{color:var(--muted)}
-.facts{background:var(--ink);color:#fff;border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:18px}
-.facts div{display:flex;flex-direction:column;gap:2px;padding-bottom:16px;border-bottom:1px solid #26385F}
-.facts div:last-child{border-bottom:0;padding-bottom:0}
-.facts b{font-family:var(--display);font-size:20px}
-.facts span{color:#B7C4DB;font-size:15px}
-
-/* contact */
-.contact{background:var(--ink);color:#fff;padding:84px 0}
-.contact h2{color:#fff}
-.contact p{color:#C3CFE3}
-.contact .rows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:36px}
-.cbox{border:1px solid #2B3E66;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:6px}
-.cbox span{font-size:14px;color:#9FB0CC}
-.cbox a,.cbox strong{color:#fff;font-weight:600;font-size:18px;text-decoration:none;overflow-wrap:anywhere}
-.cbox a:hover{color:var(--pulse)}
-.ph{background:#FFF1D6;color:#7A4B00;border-radius:6px;padding:1px 8px;font-size:15px;font-weight:600}
-.wa{position:fixed;right:18px;bottom:18px;z-index:10;display:flex;align-items:center;gap:10px;background:var(--signal-deep);color:#fff;text-decoration:none;font-weight:600;font-size:16px;padding:13px 18px;border-radius:99px;box-shadow:0 8px 24px rgba(11,27,58,.28)}
-.wa:hover{background:#115E59}
-footer{background:#07122A;color:#8FA1C0;padding:26px 0;font-size:14px}
-footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-
-@media (max-width:860px){
-  .hero{grid-template-columns:1fr;padding:32px 0 64px}
-  .chart{justify-self:start}
-  .grid3,.grid2,.about,.contact .rows{grid-template-columns:1fr}
-  section{padding:64px 0}
-}
-
-.pk{display:flex;flex-direction:column;gap:12px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px}
-.pk small{font-family:var(--brand);font-weight:700;font-size:15px;color:var(--signal-deep)}
-.pk ul{margin:0;padding-left:20px;color:var(--muted);font-size:16px}
-.pk li{margin:4px 0}
-.pk .quote{margin-top:auto;font-weight:600;color:var(--ink)}
-.pk .price{font-family:var(--brand);font-weight:800;font-size:30px;color:var(--ink);margin:0}
-.pk.main{border:2px solid var(--signal-deep)}
-.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:40px}
-.enq{margin-top:28px;display:grid;gap:12px;max-width:560px}
-.enq label{font-size:14px;font-weight:600;color:#C9D3E3;display:grid;gap:6px}
-.enq input,.enq select,.enq textarea{font:inherit;font-size:16px;padding:12px 14px;border-radius:10px;border:1px solid #3A4C70;background:#10244A;color:#fff}
-.enq input:focus-visible,.enq select:focus-visible,.enq textarea:focus-visible{outline:3px solid var(--pulse);outline-offset:2px}
-.enq button{justify-self:start;border:0}
-@media (max-width:860px){.how{grid-template-columns:1fr}}
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js')</script>
 </head>
-<body>
+<body id="top">
 
-<header class="top">
-  <div class="wrap">
-    <nav aria-label="Main">
-      <a class="logo" href="#top" aria-label="Pixelytics home">
-        <svg viewBox="0 0 96 96" width="32" height="32" aria-hidden="true"><rect x="66" y="6" width="24" height="24" rx="6" fill="#2DD4BF"/><rect x="36" y="36" width="24" height="24" rx="6" fill="#fff"/><rect x="66" y="36" width="24" height="24" rx="6" fill="#fff"/><rect x="6" y="66" width="24" height="24" rx="6" fill="#fff"/><rect x="36" y="66" width="24" height="24" rx="6" fill="#fff"/><rect x="66" y="66" width="24" height="24" rx="6" fill="#fff"/></svg>
-        <span>Pixel<b>ytics</b></span>
-      </a>
-      <div class="links">
-        <a href="#websites">Websites</a>
-        <a href="#data">Data projects</a>
-        <a href="#packages">Packages</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+<header>
+<div class="board hero">
+  <p class="name" aria-label="Pixelytics">Pixel<b>ytics</b></p>
+  <nav style="display:contents" aria-label="Main">
+    <a class="navtile" href="#websites">Websites</a>
+    <a class="navtile" href="#data">Data projects</a>
+    <a class="navtile" href="#packages">Packages</a>
+    <a class="navtile" href="#contact">Contact</a>
+  </nav>
+  <div class="hero-main">
+    <div class="left">
+      <div class="tile rv" style="--d:40ms">
+        <h1>Websites and data, made in Lahore.</h1>
+        <p class="t-m soft">We build the website, then read the numbers behind it, so owners can see what is working and what to fix next.</p>
       </div>
-    </nav>
-    <div class="hero" id="top">
-      <div>
-        <p class="eyebrow" style="color:var(--pulse)">Web design and data analysis</p>
-        <h1 style="margin-top:14px">We build the website. <span>We read the data.</span></h1>
-        <p class="lead">Pixelytics designs business websites and analyses the numbers behind them, so owners can see what is working and what to fix next.</p>
-        <div class="cta">
-          <a class="btn btn-primary" href="#websites">See our work</a>
-          <a class="btn btn-ghost" href="https://wa.me/923472811951?text=Hi%20Pixelytics%2C%20I%20would%20like%20to%20talk%20about%20a%20project.">Message us on WhatsApp</a>
-        </div>
+      <div class="facts">
+        <div class="tile sky rv" style="--d:80ms">Websites from PKR 5,000</div>
+        <div class="tile mint rv" style="--d:120ms">Call and WhatsApp buttons on every site</div>
+        <div class="tile teal rv" style="--d:160ms">Three live client sites you can open</div>
+        <div class="tile deep rv" style="--d:200ms">Four data projects, in plain language</div>
       </div>
-      <div>
-        <div class="chart" id="chart" role="img" aria-label="Pixels stacking into a rising bar chart, the Pixelytics logo mark"></div>
-      </div>
+      <a class="tile acc go rv" style="--d:240ms" href="https://wa.me/923472811951?text=Hi%20Pixelytics%2C%20I%20would%20like%20to%20talk%20about%20a%20project."><strong>Message us on WhatsApp</strong><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M5 19L19 5M8 5h11v11"/></svg></a>
+    </div>
+    <div class="phones">
+      <div class="tile media rv" style="--d:100ms"><video muted loop playsinline autoplay preload="metadata" poster="media/lhcl_poster.jpg" aria-label="Lahore Health Care Lab showcase video" width="720" height="1280"><source src="media/lhcl.mp4" type="video/mp4"></video></div>
+      <div class="tile media rv" style="--d:160ms"><video muted loop playsinline autoplay preload="metadata" poster="media/pe_poster.jpg" aria-label="Past Enlighten showcase video" width="720" height="1280"><source src="media/pe.mp4" type="video/mp4"></video></div>
+      <div class="tile media rv" style="--d:220ms"><video muted loop playsinline autoplay preload="metadata" poster="media/dpt_poster.jpg" aria-label="Discover Pakistan Tourism showcase video" width="720" height="1280"><source src="media/dpt.mp4" type="video/mp4"></video></div>
     </div>
   </div>
+</div>
 </header>
 
 <main>
-<section id="websites">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Websites</p>
-      <h2>Sites you can open and try today</h2>
-      <p>Each project below is a real build. Click through, search, tap the buttons. That is the quickest way to judge our work.</p>
+<div class="marquee" style="margin-top:72px" aria-hidden="true"><div class="mq"><span>We build the website. We read the data.</span><span>We build the website. We read the data.</span><span>We build the website. We read the data.</span><span>We build the website. We read the data.</span></div></div>
+
+<section id="websites" aria-labelledby="h-web">
+  <div class="board">
+    <div class="sec-head"><h2 id="h-web" class="rv">Sites you can open and try today</h2><p class="rv" style="--d:80ms">Each project is a real build. Watch the clip, then click through, search and tap the buttons. That is the quickest way to judge our work.</p></div>
+    
+  <article class="work " aria-label="Lahore Health Care Lab & Research Centre">
+    <div class="tile sky txt rv" style="--d:80ms">
+      <h3>Lahore Health Care Lab &amp; Research Centre</h3>
+      <p>A diagnostic lab website with a searchable test directory, health packages, a home sample collection form that sends the enquiry to WhatsApp, and click-to-call. The lab's registration certificate sits on the page for patients to see.</p>
+      <div class="tags"><span>Healthcare</span><span>Test search</span><span>WhatsApp booking</span></div>
+      <a class="link" href="https://xumair604-crypto.github.io/LHCL/">Open the live site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M5 19L19 5M8 5h11v11"/></svg></a>
     </div>
-    <div class="grid3">
+    <div class="shots"><div class="tile media rv" style="--d:140ms"><img src="media/lhcl_s4.jpg" alt="Lahore Health Care Lab website screenshot" width="700" height="1300" loading="lazy"></div><div class="tile media rv" style="--d:200ms"><img src="media/lhcl_s7.jpg" alt="Lahore Health Care Lab website screenshot" width="700" height="1300" loading="lazy"></div><div class="tile media rv" style="--d:260ms"><img src="media/lhcl_s10.jpg" alt="Lahore Health Care Lab website screenshot" width="700" height="1300" loading="lazy"></div></div>
+  </article>
+  <article class="work r2" aria-label="Past Enlighten">
+    <div class="tile mint txt rv" style="--d:80ms">
+      <h3>Past Enlighten</h3>
+      <p>A brand for private tours of Lahore and northern Pakistan for foreign travellers, led by a certified guide. The brand identity, logo and web presence were built for it, with tour search, online booking and an AI travel guide.</p>
+      <div class="tags"><span>Tours</span><span>Foreign travellers</span><span>Branding</span></div>
+      <a class="link" href="https://umairasifofficalll-code.github.io/pastenlighten-website/index.html">Open the live site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M5 19L19 5M8 5h11v11"/></svg></a>
+    </div>
+    <div class="shots"><div class="tile media rv" style="--d:140ms"><img src="media/pe_s4.jpg" alt="Past Enlighten tours website screenshot" width="700" height="1300" loading="lazy"></div><div class="tile media rv" style="--d:200ms"><img src="media/pe_s7.jpg" alt="Past Enlighten tours website screenshot" width="700" height="1300" loading="lazy"></div><div class="tile media rv" style="--d:260ms"><img src="media/pe_s10.jpg" alt="Past Enlighten tours website screenshot" width="700" height="1300" loading="lazy"></div></div>
+  </article>
+  <article class="work r3" aria-label="Discover Pakistan Tourism">
+    <div class="tile teal txt rv" style="--d:80ms">
+      <h3>Discover Pakistan Tourism</h3>
+      <p>A tours and hospitality site for family trips, school and college tours, group meals and hotel stays from Murree to Hunza, with destination pages, a trip planner and WhatsApp enquiry buttons on every tour.</p>
+      <div class="tags"><span>Tourism</span><span>Tours and hotels</span><span>Trip planner</span></div>
+      <a class="link" href="https://discoverpakistantourism.com/">Open the live site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M5 19L19 5M8 5h11v11"/></svg></a>
+    </div>
+    <div class="shots"><div class="tile media rv" style="--d:140ms"><img src="media/dpt_s4.jpg" alt="Discover Pakistan Tourism website screenshot" width="700" height="1300" loading="lazy"></div><div class="tile media rv" style="--d:200ms"><img src="media/dpt_s7.jpg" alt="Discover Pakistan Tourism website screenshot" width="700" height="1300" loading="lazy"></div><div class="tile media rv" style="--d:260ms"><img src="media/dpt_s10.jpg" alt="Discover Pakistan Tourism website screenshot" width="700" height="1300" loading="lazy"></div></div>
+  </article>
+  </div>
+</section>
 
-      <article class="site">
-        <div class="shot" style="background:#DCE7F5">
-          <div class="frame">
-            <div class="dots"><i></i><i></i><i></i></div>
-            <div class="fbar" style="background:#123B67">Lahore Health Care Lab</div>
-            <div class="fline"></div><div class="fline s"></div><div class="fline"></div>
-          </div>
-        </div>
-        <div class="body">
-          <span class="pill live">Live</span>
-          <h3>Lahore Health Care Lab &amp; Research Centre</h3>
-          <p>A diagnostic lab website with a searchable test directory, health packages, a home sample collection form that sends the enquiry to WhatsApp, and click-to-call. The lab's registration certificate sits on the page for patients to see.</p>
-          <div class="tags"><span class="tag">Healthcare</span><span class="tag">Test search</span><span class="tag">WhatsApp booking</span></div>
-          <a class="link" href="https://xumair604-crypto.github.io/LHCL/">Open the live site →</a>
-        </div>
-      </article>
+<section id="data" aria-labelledby="h-data">
+  <div class="board">
+    <div class="sec-head"><h2 id="h-data" class="rv">Analysis that ends in a clear answer</h2><p class="rv" style="--d:80ms">These are portfolio projects, not client work, built on public or practice datasets, and labelled that way so you know exactly what you are looking at.</p></div>
+    <article class="tile cloud dtile data-a rv"><h3>Gurugram real estate market analysis</h3><p>Property listings cleaned and explored in a Python notebook, then summarised in a slide deck a buyer or investor can read in minutes.</p></article>
+    <article class="tile teal dtile data-b rv" style="--d:80ms"><h3>PhonePe transaction analytics</h3><p>A large payments dataset turned into trends and comparisons, presented as a business-facing deck.</p></article>
+    <article class="tile acc dtile data-c rv"><h3>Taxi trip and fare analysis</h3><p>Raw taxi trip records inspected for quality problems, then analysed for fares, with two executive summaries for non-technical readers.</p></article>
+    <article class="tile sky dtile data-d rv" style="--d:80ms"><h3>AI movie recommender</h3><p>A recommendation system that ranks films for a viewer, documented in a notebook and explained in a short presentation.</p></article>
+  </div>
+</section>
 
-      <article class="site">
-        <div class="shot" style="background:#D8F1EC">
-          <div class="frame">
-            <div class="dots"><i></i><i></i><i></i></div>
-            <div class="fbar" style="background:#0F766E">Past Enlighten</div>
-            <div class="fline"></div><div class="fline s"></div><div class="fline"></div>
-          </div>
-        </div>
-        <div class="body">
-          <span class="pill live">Live</span>
-          <h3>Past Enlighten</h3>
-          <p>A brand for private tours of Lahore and northern Pakistan for foreign travellers, led by a certified guide. The brand identity, logo and web presence were built for it.</p>
-          <div class="tags"><span class="tag">Tours</span><span class="tag">Foreign travellers</span><span class="tag">Branding</span></div>
-          <a class="link" href="https://umairasifofficalll-code.github.io/pastenlighten-website/index.html">Open the live site →</a>
-        </div>
-      </article>
-
-      <article class="site">
-        <div class="shot" style="background:#E3E8F2">
-          <div class="frame">
-            <div class="dots"><i></i><i></i><i></i></div>
-            <div class="fbar" style="background:#0B1B3A">Discover Pakistan</div>
-            <div class="fline"></div><div class="fline s"></div><div class="fline"></div>
-          </div>
-        </div>
-        <div class="body">
-          <span class="pill live">Live</span>
-          <h3>Discover Pakistan Tourism</h3>
-          <p>A tours and hospitality site for family trips, school and college tours, group meals and hotel stays from Murree to Hunza, with destination pages, itineraries and enquiry buttons on every tour.</p>
-          <div class="tags"><span class="tag">Tourism</span><span class="tag">Tours and hotels</span><span class="tag">Enquiry buttons</span></div>
-          <a class="link" href="https://discoverpakistantourism.com/">Open the live site →</a>
-        </div>
-      </article>
-
+<section id="services" aria-labelledby="h-serv">
+  <div class="split">
+    <div class="stmt rv">
+      <h2 id="h-serv"><span>The site</span><span class="flush">and the numbers</span></h2>
+      <div class="foot"><p>Most agencies do one or the other. Here the same person builds your site and measures how it performs.</p><a class="btn dark" href="#contact">Start a project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M5 19L19 5M8 5h11v11"/></svg></a></div>
+    </div>
+    <div class="rows">
+      <div class="row rv"><h3>Design and build</h3><p>Fast, mobile-friendly sites with the buttons customers actually use: call, WhatsApp, book, search.</p><ul><li>Phone-first pages</li><li>Call and WhatsApp</li><li>Search and booking</li></ul></div>
+      <div class="row rv" style="--d:80ms"><h3>Reports and dashboards</h3><p>Sales, customers or site traffic turned into charts and a short written summary you can act on.</p><ul><li>Charts</li><li>Written summary</li><li>One dashboard</li></ul></div>
+      <div class="row rv" style="--d:160ms"><h3>Messy data, sorted</h3><p>Duplicate rows, broken dates and mixed formats fixed, so your spreadsheet can finally be trusted.</p><ul><li>Duplicates removed</li><li>Dates repaired</li><li>Formats unified</li></ul></div>
     </div>
   </div>
 </section>
 
-<section id="data" class="alt">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Data projects</p>
-      <h2>Analysis that ends in a clear answer</h2>
-      <p>These are portfolio projects, built on public or practice datasets. We label them that way so you know exactly what you are looking at.</p>
+<section id="packages" aria-labelledby="h-pack">
+  <div class="board">
+    <div class="sec-head"><h2 id="h-pack" class="rv">Pick a starting point</h2><p class="rv" style="--d:80ms">Every project is quoted after a short chat about your business, so you only pay for what you need.</p></div>
+    <div class="pricing rv" id="pricing">
+      <table>
+        <caption class="sr" style="position:absolute;left:-9999px">Compare the three Pixelytics packages</caption>
+        <thead><tr><th scope="col">What you get</th><th scope="col">Business website</th><th scope="col" class="rec">Website that brings enquiries</th><th scope="col">Reports and dashboards</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Pages</th><td>Up to 5</td><td class="rec">Up to 5, plus a page per service or tour</td><td class="no">Not included</td></tr>
+          <tr><th scope="row">Designed for phones first</th><td>Included</td><td class="rec">Included</td><td class="no">Not included</td></tr>
+          <tr><th scope="row">Call and WhatsApp buttons</th><td>Included</td><td class="rec">Included</td><td class="no">Not included</td></tr>
+          <tr><th scope="row">Enquiry button on every service</th><td class="no">Not included</td><td class="rec">Included</td><td class="no">Not included</td></tr>
+          <tr><th scope="row">Map, opening hours, social links</th><td class="no">Not included</td><td class="rec">Included</td><td class="no">Not included</td></tr>
+          <tr><th scope="row">Basic search-engine setup</th><td class="no">Not included</td><td class="rec">Included</td><td class="no">Not included</td></tr>
+          <tr><th scope="row">Cleaning of your messy sheets</th><td class="no">Not included</td><td class="rec no">Not included</td><td>Included</td></tr>
+          <tr><th scope="row">Charts and a written summary</th><td class="no">Not included</td><td class="rec no">Not included</td><td>Included</td></tr>
+          <tr><th scope="row">A dashboard you can reopen</th><td class="no">Not included</td><td class="rec no">Not included</td><td>Included</td></tr>
+          <tr><th scope="row">Price</th><td><span class="price">PKR 5,000</span></td><td class="rec"><span class="price">Quoted<small>after a short chat</small></span></td><td><span class="price">Quoted<small>after a short chat</small></span></td></tr>
+          <tr><th scope="row"></th><td><a class="btn dark" href="https://wa.me/923472811951?text=Hi%20Pixelytics%2C%20I%20would%20like%20to%20talk%20about%20a%20project.">Build my website</a></td><td class="rec"><a class="btn dark" href="https://wa.me/923472811951?text=Hi%20Pixelytics%2C%20I%20would%20like%20to%20talk%20about%20a%20project.">Ask for a quote</a></td><td><a class="btn dark" href="https://wa.me/923472811951?text=Hi%20Pixelytics%2C%20I%20would%20like%20to%20talk%20about%20a%20project.">Ask for a quote</a></td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="grid2">
-
-      <article class="data">
-        <span class="kind">Portfolio project · Real estate</span>
-        <h3>Gurugram real estate market analysis</h3>
-        <p>Property listings cleaned and explored in a Python notebook, then summarised in a slide deck a buyer or investor can read in minutes.</p>
-        <div class="tags"><span class="tag">Python notebook</span><span class="tag">Slide deck</span></div>
-      </article>
-
-      <article class="data">
-        <span class="kind">Portfolio project · Payments</span>
-        <h3>PhonePe transaction analytics</h3>
-        <p>A large payments dataset turned into trends and comparisons, presented as a business-facing deck.</p>
-        <div class="tags"><span class="tag">Excel dataset</span><span class="tag">Slide deck</span></div>
-      </article>
-
-      <article class="data">
-        <span class="kind">Portfolio project · Transport</span>
-        <h3>Taxi trip and fare analysis</h3>
-        <p>Raw taxi trip records inspected for quality problems, then analysed for fares, with two executive summaries written for non-technical readers.</p>
-        <div class="tags"><span class="tag">Python notebook</span><span class="tag">Executive summaries</span></div>
-      </article>
-
-      <article class="data">
-        <span class="kind">Portfolio project · Machine learning</span>
-        <h3>AI movie recommendation and ranking</h3>
-        <p>A recommendation system that ranks films for a viewer, documented in a notebook and explained in a short presentation.</p>
-        <div class="tags"><span class="tag">Python notebook</span><span class="tag">Presentation</span></div>
-      </article>
-
-    </div>
+    <div class="plans-m" id="plans-m" style="grid-column:1/-1"></div>
   </div>
 </section>
 
-<section id="services">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">What we do</p>
-      <h2>One place for the site and the numbers</h2>
-    </div>
-    <div class="grid3">
-      <div class="step"><small>Websites</small><h3>Design and build</h3><p>Fast, mobile-friendly sites with the buttons customers actually use: call, WhatsApp, book, search.</p></div>
-      <div class="step"><small>Analysis</small><h3>Reports and dashboards</h3><p>Sales, customers or site traffic turned into charts and a short written summary you can act on.</p></div>
-      <div class="step"><small>Cleanup</small><h3>Messy data, sorted</h3><p>Duplicate rows, broken dates and mixed formats fixed, so your spreadsheet can finally be trusted.</p></div>
-    </div>
+<section id="process" aria-labelledby="h-proc">
+  <div class="fields">
+    <div class="field"><h2 id="h-proc">How a project runs</h2><p class="clause">First, you message us about your business.</p><div class="shot"><img src="media/lhcl_s10.jpg" alt="Phone showing the people page of a finished client site" width="700" height="1300" loading="lazy"></div></div>
+    <div class="field"><p class="clause" style="margin-top:0">Then you see a plan and a quote.</p><p class="t-m">We explain what we would build or analyse, how long it takes and the price.</p><div class="shot"><img src="media/pe_s4.jpg" alt="Phone showing the tour search of a finished client site" width="700" height="1300" loading="lazy"></div></div>
+    <div class="field"><p class="clause" style="margin-top:0">Then you review it, and we launch.</p><p class="t-m">You see the work before it goes live, and we make changes until it is right.</p><div class="shot"><img src="media/dpt_s7.jpg" alt="Phone showing the destination guide of a finished client site" width="700" height="1300" loading="lazy"></div></div>
   </div>
 </section>
 
-<section id="packages" class="alt">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Packages</p>
-      <h2>Pick a starting point</h2>
-      <p>Every project is quoted after a short chat about your business, so you only pay for what you need.</p>
-    </div>
-    <div class="grid3">
-      <div class="pk"><small>Website</small><h3>Business website</h3>
-        <p class="price">PKR 5,000</p>
-        <ul><li>Up to 5 pages, designed for phones first</li><li>Call and WhatsApp buttons</li><li>Services, about and contact pages</li><li>Published online and ready to share</li></ul>
-        <p class="quote">Message us to get started</p></div>
-      <div class="pk main"><small>Website + enquiries</small><h3>Website that brings enquiries</h3>
-        <ul><li>Everything in Business website</li><li>An enquiry button on every service or tour</li><li>Map, opening hours and social links</li><li>Basic search-engine setup</li></ul>
-        <p class="quote">Message us for a quote</p></div>
-      <div class="pk"><small>Data analysis</small><h3>Reports and dashboards</h3>
-        <ul><li>Cleaning of your messy sheets</li><li>Charts of sales, customers or traffic</li><li>A short written summary of what to do next</li><li>One dashboard you can reopen</li></ul>
-        <p class="quote">Message us for a quote</p></div>
-    </div>
-    <div class="how">
-      <div class="step"><small>Step 1</small><h3>Tell us about your business</h3><p>A short WhatsApp chat about what you sell and what you want customers to do.</p></div>
-      <div class="step"><small>Step 2</small><h3>See a plan and a quote</h3><p>We explain what we would build or analyse, how long it takes and the price.</p></div>
-      <div class="step"><small>Step 3</small><h3>Review, then launch</h3><p>You see the work before it goes live, and we make changes until it is right.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="about" class="alt">
-  <div class="wrap about">
-    <div>
-      <p class="eyebrow">About</p>
-      <h2 style="margin-top:12px">Built by a developer who also reads the data</h2>
-      <div style="margin-top:22px">
-        <p>Pixelytics is run by Umair Asif, a web developer and data analyst in Pakistan. Most agencies do one or the other. Having both skills in one place means your site is built with the numbers in mind from day one.</p>
-        <p>You talk to the person who does the work, and you can see earlier projects before you decide.</p>
-      </div>
-    </div>
-    <div class="facts">
-      <div><b>Web and data under one roof</b><span>The same person builds your site and measures how it performs.</span></div>
-      <div><b>Work you can check</b><span>Live sites to open and labelled portfolio projects to read.</span></div>
-      <div><b>Plain language</b><span>Reports written for business owners, not for other analysts.</span></div>
+<section id="about" aria-labelledby="h-about">
+  <div class="board">
+    <div class="tile deep about-a rv"><h2 id="h-about">A developer who reads the data</h2><p>Pixelytics is run by Umair Asif, a web developer and data analyst in Pakistan. You talk to the person who does the work, and you can see earlier projects before you decide.</p><a class="link" href="https://www.linkedin.com/in/umair-asif-data/">Umair Asif on LinkedIn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M5 19L19 5M8 5h11v11"/></svg></a></div>
+    <div class="about-b">
+      <div class="tile sky rv" style="--d:60ms"><h3>Web and data under one roof</h3><p>The same person builds your site and measures how it performs.</p></div>
+      <div class="tile mint rv" style="--d:120ms"><h3>Work you can check</h3><p>Live sites to open and labelled portfolio projects to read.</p></div>
+      <div class="tile cloud rv" style="--d:180ms"><h3>Plain language</h3><p>Reports written for business owners, not for other analysts.</p></div>
     </div>
   </div>
 </section>
 </main>
 
-<section class="contact" id="contact">
-  <div class="wrap">
-    <p class="eyebrow" style="color:var(--pulse)">Contact</p>
-    <h2 style="margin-top:12px">Tell us what you need</h2>
-    <p style="margin-top:14px;max-width:36em">Send a message with your business and what you want built or analysed. We reply with how we would approach it.</p>
+<section class="contact" id="contact" aria-labelledby="h-contact">
+  <div class="inner">
+    <h2 id="h-contact">Tell us what you need</h2>
+    <div class="strip" aria-hidden="true"><img src="media/dpt_s1.jpg" alt="" width="112" height="150" style="width:112px"><img src="media/pe_s4.jpg" alt="" width="150" height="150" style="width:150px"><img src="media/lhcl_s7.jpg" alt="" width="225" height="150" style="width:225px"><img src="media/dpt_s10.jpg" alt="" width="112" height="150" style="width:112px"><img src="media/pe_s1.jpg" alt="" width="150" height="150" style="width:150px"><img src="media/lhcl_s4.jpg" alt="" width="225" height="150" style="width:225px"><img src="media/dpt_s7.jpg" alt="" width="112" height="150" style="width:112px"><img src="media/pe_s10.jpg" alt="" width="150" height="150" style="width:150px"><img src="media/lhcl_s1.jpg" alt="" width="225" height="150" style="width:225px"><img src="media/dpt_s4.jpg" alt="" width="112" height="150" style="width:112px"><img src="media/pe_s7.jpg" alt="" width="150" height="150" style="width:150px"><img src="media/lhcl_s10.jpg" alt="" width="225" height="150" style="width:225px"></div>
     <form class="enq" id="enq">
-      <label>Your name<input name="n" autocomplete="name" required></label>
-      <label>Your business<input name="b" autocomplete="organization"></label>
+      <label>Your name<input name="n" autocomplete="name" placeholder="Name" required></label>
+      <label>Your business<input name="b" autocomplete="organization" placeholder="Business"></label>
       <label>What do you need?<select name="w"><option>A business website</option><option>A website with enquiry buttons</option><option>Data analysis or a dashboard</option><option>Not sure yet</option></select></label>
-      <label>Anything else we should know<textarea name="m" rows="3"></textarea></label>
-      <button class="btn btn-primary" type="submit">Send on WhatsApp</button>
+      <label class="wide">Anything else we should know<textarea name="m" rows="1" placeholder="A line about your business"></textarea></label>
+      <button class="btn" type="submit">Send on WhatsApp</button>
+      <p class="enq-note">This opens WhatsApp with your message filled in. Nothing is sent until you press send there.</p>
     </form>
-    <script>
-    document.getElementById('enq').addEventListener('submit',function(e){
-      e.preventDefault();var f=e.target;
-      var t='Hi Pixelytics, I am '+f.n.value+(f.b.value?(' from '+f.b.value):'')+'. I need: '+f.w.value+'.'+(f.m.value?(' '+f.m.value):'');
-      window.open('https://wa.me/923472811951?text='+encodeURIComponent(t),'_blank','noopener');
-    });
-    </script>
-    <div class="rows">
-      <div class="cbox"><span>WhatsApp</span><a href="https://wa.me/923472811951?text=Hi%20Pixelytics%2C%20I%20would%20like%20to%20talk%20about%20a%20project.">+92 347 2811951</a></div>
-      <div class="cbox"><span>Phone</span><a href="tel:+923451504214">+92 345 1504214</a></div>
-      <div class="cbox"><span>Email</span><a href="mailto:hello.pixelytics@gmail.com">hello.pixelytics@gmail.com</a></div>
-      <div class="cbox"><span>LinkedIn</span><a href="https://www.linkedin.com/in/umair-asif-data/">Umair Asif on LinkedIn</a></div>
-      <div class="cbox"><span>Instagram</span><a href="https://www.instagram.com/_umaix01/">@_umaix01 on Instagram</a></div>
-      <div class="cbox"><span>Facebook</span><a href="https://www.facebook.com/profile.php?id=61596401917194">Pixelytics on Facebook</a></div>
+    <div class="contacts">
+      <a href="https://wa.me/923472811951?text=Hi%20Pixelytics%2C%20I%20would%20like%20to%20talk%20about%20a%20project."><span>WhatsApp</span>+92 347 2811951</a>
+      <a href="tel:+923451504214"><span>Phone</span>+92 345 1504214</a>
+      <a href="mailto:hello.pixelytics@gmail.com"><span>Email</span>hello.pixelytics@gmail.com</a>
+      <a href="https://www.linkedin.com/in/umair-asif-data/"><span>LinkedIn</span>Umair Asif</a>
+      <a href="https://www.instagram.com/_umaix01/"><span>Instagram</span>@_umaix01</a>
+      <a href="https://www.facebook.com/profile.php?id=61596401917194"><span>Facebook</span>Pixelytics</a>
     </div>
   </div>
 </section>
-<a class="wa" href="https://wa.me/923472811951?text=Hi%20Pixelytics%2C%20I%20would%20like%20to%20talk%20about%20a%20project.">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.7-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
-  WhatsApp us
-</a>
+
 <footer>
-  <div class="wrap"><span>© 2026 Pixelytics</span><span><a href="https://github.com/umairasifofficalll-code" style="color:#B7C4DB">GitHub</a> · <a href="https://www.linkedin.com/in/umair-asif-data/" style="color:#B7C4DB">LinkedIn</a> · <a href="https://www.instagram.com/_umaix01/" style="color:#B7C4DB">Instagram</a> · <a href="https://www.facebook.com/profile.php?id=61596401917194" style="color:#B7C4DB">Facebook</a></span></div>
+  <div class="board">
+    <div class="tile f-stmt"><p class="t-l">We build the website. We read the data.</p><p class="t-s soft">© 2026 Pixelytics</p></div>
+    <nav class="tile f-nav" aria-label="Footer"><ul><li><a href="#websites">Websites</a></li><li><a href="#data">Data projects</a></li><li><a href="#packages">Packages</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+    <div class="tile f-time deep"><p class="t-s soft">Lahore, Pakistan</p><p class="clock" id="clock" aria-live="off">PKT</p></div>
+    <a class="tile f-mail" href="mailto:hello.pixelytics@gmail.com">hello.pixelytics@gmail.com</a>
+    <p class="tile f-name" aria-hidden="true"><span>Pixel<b>ytics</b></span></p>
+    <a class="tile acc f-cta" href="https://wa.me/923472811951?text=Hi%20Pixelytics%2C%20I%20would%20like%20to%20talk%20about%20a%20project.">Message us on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M5 19L19 5M8 5h11v11"/></svg></a>
+  </div>
 </footer>
 
-<script>
-(function(){
-  // Pixel chart: column heights echo the logo. 'hi' marks the top pixel of the tallest bar.
-  var heights=[1,2,2,3,3,4,5], rows=5, el=document.getElementById('chart');
-  var html='';
-  for(var r=0;r<rows;r++){
-    for(var c=0;c<heights.length;c++){
-      var filled=(rows-r)<=heights[c];
-      var top=(rows-r)===heights[c];
-      var cls=filled?(c===heights.length-1&&top?'hi':'on'):'';
-      var delay=filled?' style="animation-delay:'+(c*70+(rows-r)*30)+'ms"':'';
-      html+='<i class="'+cls+'"'+delay+'></i>';
-    }
-  }
-  el.innerHTML=html;
-})();
-</script>
+<a class="wa" href="https://wa.me/923472811951?text=Hi%20Pixelytics%2C%20I%20would%20like%20to%20talk%20about%20a%20project."><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.7-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg><span>WhatsApp us</span></a>
+<script src="app.js"></script>
 </body>
 </html>
