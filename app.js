@@ -25,7 +25,7 @@
 
   // Lahore time
   var c=document.getElementById('clock');
-  function tick(){try{c.textContent=new Date().toLocaleTimeString('en-GB',{timeZone:'Asia/Karachi',hour:'2-digit',minute:'2-digit'})+' PKT'}catch(x){}}
+  function tick(){try{c.textContent=new Date().toLocaleTimeString('en-GB',{timeZone:'Asia/Karachi',hour:'2-digit',minute:'2-digit'})}catch(x){}}
   if(c){tick();setInterval(tick,30000)}
 
   // pricing: phone layout, one block per plan, built from the table
